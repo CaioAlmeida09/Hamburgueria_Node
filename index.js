@@ -26,5 +26,14 @@ app.put('/alteration/:id', (request, response) => {
     }
     pedidos[position] = pedidmudado
     return response.send("alterado")
+})
 
+app.delete('/delete/:id' ,(request, response)=>{
+    const { id } = request.params
+    const position = pedidos.findIndex(index => index.id === id)
+    if (position < 0) {
+        return response.status(404).json({ "message": "Id não encontrado" })
+    }
+    pedidos.splice(position, 1)
+    return response.status(204).json({"message":"Não encontrado"})
 })
