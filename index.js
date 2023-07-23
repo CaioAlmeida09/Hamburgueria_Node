@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const uuid = require("uuid");
 app.use(express.json());
-const cors = require('cors')
-app.use(cors())
+const cors = require("cors");
+app.use(cors());
+
+const port = process.env.PORT || 3001;
 
 const pedidos = [];
 const pedidEspc = [];
@@ -27,8 +29,8 @@ const midleTwo = (request, response, next) => {
 };
 
 app.post("/pedido", midleTwo, (request, response) => {
-  const {name , ...mypedido} = request.body;
-  const newped = { id: uuid.v4(), name, ...mypedido};
+  const { name, ...mypedido } = request.body;
+  const newped = { id: uuid.v4(), name, ...mypedido };
   pedidos.push(newped);
   return response.status(201).json(newped);
 });
@@ -74,4 +76,4 @@ app.patch("/status/:id", (request, response) => {
   return response.json(Newstatus);
 });
 
-app.listen(3001);
+app.listen(port);
