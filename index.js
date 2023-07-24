@@ -5,7 +5,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-const port = process.env.PORT || 3001;
+const Port = process.env.PORT || 3001;
 
 const pedidos = [];
 const pedidEspc = [];
@@ -76,4 +76,4 @@ app.patch("/status/:id", (request, response) => {
   return response.json(Newstatus);
 });
 
-app.listen(port);
+app.listen(Port);
